@@ -1,0 +1,33 @@
+{
+  "name": "GameColiseum",
+  "version": "0.0.1",
+  "description": "A realtime Game Server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test" : "node server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "nodemailer": "^6.7.3",
+    "socket.io": "^4.4.1",
+    "sequelize" : "^6.19.0",
+    "sqlite3" : "^5.0.6"
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "repository": {
+    "url": "https://www.github.com/MxTecInc/xchat_server"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "socket.io",
+    "express"
+  ]
+}
