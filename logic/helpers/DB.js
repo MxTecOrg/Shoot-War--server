@@ -1,6 +1,7 @@
 const config = require("../../config.js");
 const { Sequelize, Model, DataTypes, Op } = require("sequelize");
 const UserModel = require("./models/user.js");
+const MapsModel = require("./models/maps.js");
 
 
 /**********************
@@ -66,8 +67,55 @@ User.init(
     await User.sync();
 })();
 
+/*******************
+ * Modelo de Mapas *
+ *******************/
+class Maps extends Model {
+    getData(_rows) {
+        const rows = _rows;
+        let ret = {};
+        for (let row of rows) {
+            if (this[row]) {
+                try {
+                    ret[row] = JSON.parse(this[row]);
+                } catch (err) {
+                    ret[row] = this[row];
+                }
+            }
+        }
+        return ret;
+    }
+
+    async setData(obj) {
+        let parsedObj = {};
+        for (let o in obj) {
+            if (this[o] == undefined) continue;
+            parsedObj[o] = (typeof(obj[o]) === "object" ? JSON.stringify(obj[o]) : obj[o]);
+        }
+        try {
+            await this.update(parsedObj);
+            return true;
+        } catch (err) {
+            console.err(err);
+            return false;
+        }
+    }
+}
+
+Maps.init(
+    MapsModel(DataTypes),
+    {
+        sequelize
+    }
+);
+
+(async () => {
+    await Maps.sync();
+})();
+
 
 module.exports = {
     User,
+    Maps,
     Op
 }
