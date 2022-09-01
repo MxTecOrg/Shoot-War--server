@@ -63,6 +63,14 @@ const UserModel = (DataTypes) => {
             type: DataTypes.INTEGER,
             defaultValue: 3
         },
+        map: {
+            type: DataTypes.STRING,
+            defaultValue: "coliseum_city"
+        },
+        pos: {
+            type: DataTypes.STRING,
+            defaultValue: "{}"
+        },
         isOnline: {
             type: DataTypes.BOOLEAN,
             defaultStatus: false
@@ -81,7 +89,7 @@ const UserModel = (DataTypes) => {
         },
         acclevel: {
             type: DataTypes.INTEGER,
-            defaultValue: 1
+            defaultValue: 3
         }
     }
 }

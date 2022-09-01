@@ -41,6 +41,12 @@ io.on("connection", async (socket) => {
                 nickname: "GUESS_#####".replace(/#/g, (n) => Math.floor(Math.random() * 9))
             });
             if(!user) cuser();
+            else {
+                await user.setData({
+                    pos: config.GAME.start_pos,
+                    map: config.GAME.start_map
+                });
+            }
         }
         cuser();
     }

@@ -1,6 +1,6 @@
 const config = require("../../config.js");
 const { User } = require(config.LOGIC + "/helpers/DB.js");
-
+const admin = require("./admin.js");
 
 const client = async (io, socket, id) => {
     const user = await User.findOne({
@@ -27,8 +27,8 @@ const client = async (io, socket, id) => {
         spins: user.spins,
         vip: user.vip
     });
-
-
+    
+    admin(io , socket , id);
 
 };
 

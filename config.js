@@ -11,7 +11,13 @@ const config = {
         expire: "365d"
     },
     GAME: {
-        
+        tile_size: 100,
+        start_pos: {
+            x: 50 * this.GAME.tile_size,
+            y: 50 * this.GAME.tile_size,
+            a: 0
+        },
+        start_map: "a_island"
     },
     SERVER: { version: "v0.0.1" },
 };

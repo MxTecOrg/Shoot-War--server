@@ -70,7 +70,7 @@ User.init(
 /*******************
  * Modelo de Mapas *
  *******************/
-class Maps extends Model {
+class Map extends Model {
     getData(_rows) {
         const rows = _rows;
         let ret = {};
@@ -102,7 +102,7 @@ class Maps extends Model {
     }
 }
 
-Maps.init(
+Map.init(
     MapsModel(DataTypes),
     {
         sequelize
@@ -110,12 +110,12 @@ Maps.init(
 );
 
 (async () => {
-    await Maps.sync();
+    await Map.sync();
 })();
 
 
 module.exports = {
     User,
-    Maps,
+    Map,
     Op
 }
