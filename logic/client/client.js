@@ -1,6 +1,9 @@
 const config = require("../../config.js");
 const { User } = require(config.LOGIC + "/helpers/DB.js");
+const {setData} = require(config.LOGIC + "/helpers/pos_db.js ");
 const admin = require("./admin.js");
+const map = require("./map.js");
+const move = require("./move.js");
 
 const client = async (io, socket, id) => {
     const user = await User.findOne({
@@ -17,7 +20,7 @@ const client = async (io, socket, id) => {
 
 
     socket.emit("user-data", {
-        user_id: user.user_id,
+        id: user.id,
         username: user.username,
         nickname: nickname,
         level: user.level,
@@ -25,10 +28,18 @@ const client = async (io, socket, id) => {
         gold: user.gold,
         gems: user.gems,
         spins: user.spins,
-        vip: user.vip
+        vip: user.vip,
+        map: user.map,
+        pos: user.getData(["pos"]).pos
     });
     
+    setData(user.id , nickname , level);
+    
+    map(io , socket , id);
+    
     admin(io , socket , id);
+    
+    move(io , socket , user.id);
 
 };
 

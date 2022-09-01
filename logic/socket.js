@@ -2,6 +2,8 @@ const config = require("../config.js");
 const io = require(config.DIRNAME + "/server.js");
 const client = require(config.LOGIC + "/client/client.js");
 const { User } = require(config.LOGIC + "/helpers/DB.js");
+const { looper } = require(config.LOGIC + "/engine/looper.js");
+looper(io);
 
 io.on("connection", async (socket) => {
     if (!socket.handshake.query) {
