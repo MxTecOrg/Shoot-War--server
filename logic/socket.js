@@ -36,7 +36,7 @@ io.on("connection", async (socket) => {
         }
     });
     if (!user) {
-        const cuser = () => {
+        const cuser = async () => {
             user = await User.create({
                 user_id: id,
                 username: String(id),

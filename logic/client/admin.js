@@ -11,7 +11,7 @@ const admin = async (io , socket , id) => {
     if(!user || user.accLevel < 2) return;
     
     socket.join("admin-chat");
-    socket.on("a-create-map" , (data) => {
+    socket.on("a-create-map" , async (data) => {
         const map = await Map.create({
             map_id : data.map_id,
             name: data.name,
@@ -71,5 +71,25 @@ const admin = async (io , socket , id) => {
         }
         
         return socket.emit("a-delete-map" , false);
+    });
+    
+    socket.on("a-set-tile" , async (data) => {
+        const map = await Map.findOne({
+            where: {
+                map_id : data.map_id
+            }
+        }); 
+        
+        let tiles = map.getData([data.type]);
+        
+        tiles[data.tile] = {
+            t: data.t,
+            d: data.d,
+            a: data.a
+        };
+        
+        await map.setData({
+            [data.type]: tiles
+        });
     });
 }

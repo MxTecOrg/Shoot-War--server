@@ -1,6 +1,6 @@
 const config = require("../../config.js");
 const { User } = require(config.LOGIC + "/helpers/DB.js");
-const {setData} = require(config.LOGIC + "/helpers/pos_db.js ");
+const {setData} = require(config.LOGIC + "/helpers/pos_db.js");
 const admin = require("./admin.js");
 const map = require("./map.js");
 const move = require("./move.js");

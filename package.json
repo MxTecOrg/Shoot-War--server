@@ -1,5 +1,5 @@
 {
-  "name": "Shoot War",
+  "name": "shootwar",
   "version": "0.0.1",
   "description": "Shoot War game server.",
   "main": "server.js",
