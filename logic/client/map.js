@@ -16,6 +16,8 @@ const map = async (io , socket , id) => {
         }
     });
     
+    if(!_map) return socket.emit("error" , "MAP_NOT_FOUND");
+    
     const pos = user.getData(["pos"]).pos;
     setPos(user.id , user.map , pos.x , pos.y , pos.a);
     socket.join(user.map);
@@ -26,7 +28,7 @@ const map = async (io , socket , id) => {
         map: user.map,
         pos: pos
     });
-    const m = _map.getData(["name" , "defaultTerrain" ,
+    let m = _map.getData(["name" , "defaultTerrain" ,
     "terrain" , "objects" , "size"]);
     m.pjs = getMapPos(user.map);
     socket.emit("map-data" , m);
