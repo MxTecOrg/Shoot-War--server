@@ -21,7 +21,7 @@ const map = async (io , socket , id) => {
     const pos = user.getData(["pos"]).pos;
     setPos(user.id , user.map , pos.x , pos.y , pos.a);
     socket.join(user.map);
-    socket.to(user.map).emit("new-pj" , {
+    socket.broadcast.to(user.map).emit("new-pj" , {
         id: user.id,
         level: user.level,
         nickname: user.nickname,

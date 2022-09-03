@@ -42,18 +42,42 @@ const getPos = (id) => {
 
 const getAllPos = () => {
     return pos;
-}
+};
 
 const getMapPos = (map) => {
     return (mapPos[map] ? mapPos[map] : {});
-}
+};
 
 const delPos = (id) => {
     if (pos[id]) delete pos[id];
-}
+};
 
 const clearPos = () => {
     pos = {};
+};
+
+var CHATS = {
+    global: [],
+    admin: []
+};
+
+const addMessage = (id , chat , nickname, message) => {
+    if(CHATS[chat])
+    CHATS[chat].push({
+        id:id,
+        c: chat,
+        n: nickname,
+        m: message
+    });
+};
+
+const getMessages = (chat) => {
+    let mess = [];
+    for(let m = (CHATS[chat].length - 1) ; m > 0 || m > (CHATS[chat].length - 25) ; m--){
+        mess.push(CHATS[m]);
+    }
+    return mess.reverse();
 }
 
-module.exports = { setData , setPos, getPos, delPos, getMapPos, getAllPos, clearPos };
+module.exports = { setData , setPos, getPos, delPos
+, getMapPos, getAllPos, clearPos , addMessage , getMessages};

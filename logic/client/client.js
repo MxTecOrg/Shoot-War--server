@@ -4,6 +4,7 @@ const {setData} = require(config.LOGIC + "/helpers/pos_db.js");
 const admin = require("./admin.js");
 const map = require("./map.js");
 const move = require("./move.js");
+const message = require("./message.js");
 
 const client = async (io, socket, id) => {
     const user = await User.findOne({
@@ -40,6 +41,8 @@ const client = async (io, socket, id) => {
     admin(io , socket , id);
     
     move(io , socket , user.id);
+    
+    message(io , socket , id);
 
 };
 
