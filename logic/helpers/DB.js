@@ -21,6 +21,20 @@ const sequelize = new Sequelize({
     }
 })();
 
+const sequelize2 = new Sequelize({
+    dialect: 'sqlite',
+    storage: config.DB + '/maps.sqlite',
+    logging: false
+});
+
+(async () => {
+    try {
+        sequelize2.authenticate();
+    } catch (err) {
+        throw new Error("" + err)
+    }
+})();
+
 /*********************
  * Modelo de Usuario *
  *********************/
@@ -105,7 +119,7 @@ class Map extends Model {
 Map.init(
     MapsModel(DataTypes),
     {
-        sequelize
+        sequelize2
     }
 );
 

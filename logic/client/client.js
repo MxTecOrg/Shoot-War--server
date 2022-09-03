@@ -22,7 +22,7 @@ const client = async (io, socket, id) => {
     socket.emit("user-data", {
         id: user.id,
         username: user.username,
-        nickname: nickname,
+        nickname: user.nickname,
         level: user.level,
         xp: user.xp,
         gold: user.gold,
@@ -33,7 +33,7 @@ const client = async (io, socket, id) => {
         pos: user.getData(["pos"]).pos
     });
     
-    setData(user.id , nickname , level);
+    setData(user.id , user.nickname , user.level);
     
     map(io , socket , id);
     

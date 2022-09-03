@@ -93,3 +93,5 @@ const admin = async (io , socket , id) => {
         });
     });
 }
+
+module.exports = admin;
