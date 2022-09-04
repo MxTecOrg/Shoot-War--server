@@ -53,7 +53,7 @@ io.on("connection", async (socket) => {
         cuser();
     }
     
-    if(user.acc_level == 0){
+    if(user.accLevel == 0){
         socket.emit("error" , "ACCOUNT_BANNED");
         socket.disconnect();
         return;

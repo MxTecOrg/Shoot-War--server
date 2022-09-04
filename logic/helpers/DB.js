@@ -119,7 +119,7 @@ class Map extends Model {
 Map.init(
     MapsModel(DataTypes),
     {
-        sequelize2
+        sequelize: sequelize2
     }
 );
 
