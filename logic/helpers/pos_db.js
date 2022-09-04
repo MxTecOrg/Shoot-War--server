@@ -73,8 +73,8 @@ const addMessage = (id , chat , nickname, message) => {
 
 const getMessages = (chat) => {
     let mess = [];
-    for(let m = (CHATS[chat].length - 1) ; m > 0 || m > (CHATS[chat].length - 25) ; m--){
-        mess.push(CHATS[m]);
+    for(let m = (CHATS[chat].length - 1) ; m > 0 && m > (CHATS[chat].length - 25) ; m--){
+        if(CHATS[m]) mess.push(CHATS[m]);
     }
     return mess.reverse();
 }

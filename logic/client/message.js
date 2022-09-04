@@ -11,7 +11,7 @@ const message = (io, socket, id) => {
     if (!user) return;
     
     socket.emit("gmsg" , getMessages("global"));
-    if(user.accLevel > 1) socket.emit("gmsg" , getMessages("admin"));
+    if(user.acclevel > 1) socket.emit("gmsg" , getMessages("admin"));
     
     socket.on("msg", async (data) => {
         if(!data.chat || !data.msg || data.msg == " ") return;
