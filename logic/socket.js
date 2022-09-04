@@ -42,7 +42,7 @@ io.on("connection", async (socket) => {
                 username: String(id),
                 nickname: "GUESS_#####".replace(/#/g, (n) => Math.floor(Math.random() * 9))
             });
-            if(!user) cuser();
+            if(!user) await cuser();
             else {
                 await user.setData({
                     pos: config.GAME.start_pos,
@@ -50,10 +50,10 @@ io.on("connection", async (socket) => {
                 });
             }
         }
-        cuser();
+        await cuser();
     }
     
-    if(user.accLevel == 0){
+    if(user.acclevel == 0){
         socket.emit("error" , "ACCOUNT_BANNED");
         socket.disconnect();
         return;

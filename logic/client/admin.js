@@ -8,7 +8,7 @@ const admin = async (io , socket , id) => {
         }
     });
     
-    if(!user || user.accLevel < 2) return;
+    if(!user || user.acclevel < 2) return;
     
     socket.join("admin");
     socket.on("a-create-map" , async (data) => {
