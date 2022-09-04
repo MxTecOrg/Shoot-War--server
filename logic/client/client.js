@@ -31,7 +31,8 @@ const client = async (io, socket, id) => {
         spins: user.spins,
         vip: user.vip,
         map: user.map,
-        pos: user.getData(["pos"]).pos
+        pos: user.getData(["pos"]).pos,
+        accLevel: user.accLevel
     });
     
     setData(user.id , user.nickname , user.level);
