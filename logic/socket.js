@@ -20,7 +20,7 @@ io.on("connection", async (socket) => {
 
     let id;
     try {
-        id = Buffer.from(token).toString("base64");
+        id = token; //Buffer.from(token).toString("base64");
     } catch (err) {
         id = null;
         console.log(err);
