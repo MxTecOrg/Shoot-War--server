@@ -1,6 +1,6 @@
 const config = require("../config.js");
 const io = require(config.DIRNAME + "/server.js");
-const {getPos} = require(config.LOGIC + "/helpers/db_pos.js");
+const {getPos} = require(config.LOGIC + "/helpers/pos_db.js");
 const client = require(config.LOGIC + "/client/client.js");
 const { User } = require(config.LOGIC + "/helpers/DB.js");
 const { looper } = require(config.LOGIC + "/engine/looper.js");
