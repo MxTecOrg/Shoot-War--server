@@ -12,7 +12,7 @@ const looper = async (io) => {
     console.log("Loop engine started");
     setInterval(() => {
         for(let m in moves){
-            io.to(m).emit(moves[m]);
+            io.to(m).emit("move" , moves[m]);
         }
     } , 33.33);
 };
