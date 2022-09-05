@@ -20,16 +20,16 @@ const setPos = (id, map, x, y, a) => {
         pos[id] = {
             id,
             map,
-            x,
-            y,
-            a
+            x: parseFloat(x),
+            y: parseFloat(y),
+            a: parseFloat(a)
         };
     }
     else {
         pos[id].map = map;
-        pos[id].x = x;
-        pos[id].y = y;
-        pos[id].a = a;
+        pos[id].x = parseFloat(x);
+        pos[id].y = parseFloat(y);
+        pos[id].a = parseFloat(a);
     }
     if(!mapPos[map]) mapPos[map] = {};
     mapPos[map][id] = pos[id];
