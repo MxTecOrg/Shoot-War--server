@@ -1,4 +1,5 @@
 const config = require("../../config.js");
+const {getPos} = require(config.LOGIC + "/helper/db_pos.js");
 const { User , Map , Op} = require(config.LOGIC + "/helpers/DB.js");
 
 const admin = async (io , socket , id) => {
@@ -46,13 +47,13 @@ const admin = async (io , socket , id) => {
         user.setData({
             map: map.map_id,
             pos: {
-                x: parseInt(map.getData(["size"]).size.x / 2) * config.GAME.tile_size,
-                y: parseInt(map.getData(["size"]).size.y / 2) * config.GAME.tile_size,
+                x: parseInt(map.getData(["size"]).size.x / 2) ,
+                y: parseInt(map.getData(["size"]).size.y / 2) ,
                 a: 0
             }
         });
         
-        return socket.emit("a-teleport" , true)
+        return socket.emit("a-teleport" , true);
     });
     
     socket.on("a-delete-map" , async (data) => {
