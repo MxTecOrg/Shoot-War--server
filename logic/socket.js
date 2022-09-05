@@ -1,5 +1,6 @@
 const config = require("../config.js");
 const io = require(config.DIRNAME + "/server.js");
+const {getPos} = require(config.LOGIC + "/helpers/db_pos.js");
 const client = require(config.LOGIC + "/client/client.js");
 const { User } = require(config.LOGIC + "/helpers/DB.js");
 const { looper } = require(config.LOGIC + "/engine/looper.js");
@@ -79,8 +80,16 @@ io.on("connection", async (socket) => {
                 user_id: id
             }
         });
+        const pos = getPos(_user.id);
+        socket.broadcast.to(pos.map).emit("del-pj" , _user.id);
         await _user.setData({
-            isOnline: false
+            isOnline: false,
+            pos: {
+                x: pos.x,
+                y: pos.y,
+                a: pos.a
+            },
+            map: pos.map
         });
         delete io.sockets[id];
     });
