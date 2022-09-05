@@ -2,7 +2,7 @@ const config = require("../../config.js");
 const { setMove } = require(config.LOGIC + "/engine/looper.js");
 const {getPos , setPos} = require(config.LOGIC + "/helpers/pos_db.js");
 
-var lastMov = {};
+var lastMove = {};
 
 const move = async (io , socket , id) => {
     socket.on("move" , (data) => {
