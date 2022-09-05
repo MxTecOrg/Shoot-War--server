@@ -13,6 +13,7 @@ const looper = async (io) => {
     setInterval(() => {
         for(let m in moves){
             io.to(m).emit("move" , moves[m]);
+            delete moves[m];
         }
     } , 33.33);
 };
