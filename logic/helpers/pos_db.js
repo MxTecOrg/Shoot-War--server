@@ -1,12 +1,13 @@
 var pos = {},
 mapPos = {};
 
-const setData = (id, nickname, level) => {
+const setData = (id, nickname, level, speed) => {
     if (!pos[id]){
         pos[id] = {
             id,
             nickname,
-            level
+            level,
+            speed
         };
     }
     else {
@@ -15,7 +16,7 @@ const setData = (id, nickname, level) => {
     }
 }
 
-const setPos = (id, map, x, y, a) => {
+const setPos = (id, map, x, y, a ) => {
     if (!pos[id]) {
         pos[id] = {
             id,

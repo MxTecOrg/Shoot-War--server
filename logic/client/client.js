@@ -32,10 +32,11 @@ const client = async (io, socket, id) => {
         vip: user.vip,
         map: user.map,
         pos: user.getData(["pos"]).pos,
-        acclevel: user.acclevel
+        acclevel: user.acclevel,
+        speed: user.speed
     });
     
-    setData(user.id , user.nickname , user.level);
+    setData(user.id , user.nickname , user.level , user.speed);
     
     map(io , socket , id);
     

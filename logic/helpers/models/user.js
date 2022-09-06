@@ -71,6 +71,10 @@ const UserModel = (DataTypes) => {
             type: DataTypes.STRING,
             defaultValue: "{}"
         },
+        speed: {
+            type: DataTypes.INTEGER,
+            defaultValue: 3
+        },
         isOnline: {
             type: DataTypes.BOOLEAN,
             defaultStatus: false

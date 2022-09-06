@@ -8,21 +8,23 @@ const circleXY = (s, theta) => {
     //theta = (theta - 90) * Math.PI / 180;
     return {
         x: s * Math.cos(theta.toFixed(5)),
-        y: -s * Math.sin(theta.toFixed(5))
+        y: s * Math.sin(theta.toFixed(5))
     };
 }
 
 const move = async (io, socket, id) => {
     socket.on("move", (data) => {
         const atime = new Date().getTime();
-        if ((lastMove[id] ? lastMove[id] : 0) + 5 <= atime && data.a) {
+        if ((lastMove[id] ? lastMove[id] : 0) + 5 <= atime &&
+            (data[0] > 1 ? 1 : (data[0] < -1 ? -1 : data[0])) &&
+            (data[1] > 1 ? 1 : (data[1] < -1 ? -1 : data[1]))) {
             lastMove[id] = atime;
-            let { map , x , y } = getPos(id);
-            const xy = circleXY(3 , data.a);
-            x += xy.x;
-            y += xy.y;
-            setPos(id, map, x , y , data.a);
-            setMove(id, map, x , y , data.a);
+            let { map, x, y , speed } = getPos(id);
+            
+            x += data[0] * speed;
+            y += data[1] * speed;
+            setPos(id, map, x, y, data[2]);
+            setMove(id, map, x, y, data[2]);
         }
     });
 };

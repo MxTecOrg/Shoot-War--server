@@ -81,7 +81,6 @@ io.on("connection", async (socket) => {
             }
         });
         const pos = getPos(_user.id);
-        console.log(pos);
         if (pos) {
             socket.broadcast.to(pos.map).emit("del-pj", _user.id);
             await _user.setData({
