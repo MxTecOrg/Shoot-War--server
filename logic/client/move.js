@@ -19,8 +19,8 @@ const move = async (io, socket, id) => {
             lastMove[id] = atime;
             let { map , x , y } = getPos(id);
             const xy = circleXY(3 , data.a);
-            x += xy.x;
-            y += xy.y;
+            x += -xy.x;
+            y += -xy.y;
             setPos(id, map, x , y , data.a);
             setMove(id, map, x , y , data.a);
         }
