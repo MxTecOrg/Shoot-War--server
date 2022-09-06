@@ -1,5 +1,5 @@
 const config = require("../../config.js");
-const {getPos} = require(config.LOGIC + "/helpers/pos_db.js");
+const {getPos , setPos} = require(config.LOGIC + "/helpers/pos_db.js");
 const { User , Map , Op} = require(config.LOGIC + "/helpers/DB.js");
 
 const admin = async (io , socket , id) => {
@@ -46,8 +46,8 @@ const admin = async (io , socket , id) => {
         await socket.join(map.map_id);
         let pos = map.getData(["size"]).size;
         pos.a = 0;
-        setPos(user.id, map.map_id, pos.x, pos.y, pos.a);
-        console.log(pos);
+        setPos(user.id, map.map_id, pos.x /2, pos.y/2, pos.a);
+        
         socket.broadcast.to(map.map_id).emit("new-pj", {
             id: user.id,
             level: user.level,
@@ -57,11 +57,7 @@ const admin = async (io , socket , id) => {
         });
         user.setData({
             map: map.map_id,
-            pos: {
-                x: pos.x ,
-                y: pos.y ,
-                a: pos.a
-            }
+            pos: pos
         });
         
         return socket.emit("a-teleport" , true);

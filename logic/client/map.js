@@ -16,10 +16,11 @@ const map = async (io , socket , id) => {
         }
     });
     
-    if(!_map) return socket.emit("error" , "MAP_NOT_FOUND");
-    
     const pos = user.getData(["pos"]).pos;
     setPos(user.id , user.map , pos.x , pos.y , pos.a);
+    
+    if(!_map) return socket.emit("error" , "MAP_NOT_FOUND");
+    
     socket.join(user.map);
     socket.broadcast.to(user.map).emit("new-pj" , {
         id: user.id,

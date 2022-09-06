@@ -1,6 +1,6 @@
 const config = require("../config.js");
 const io = require(config.DIRNAME + "/server.js");
-const {getPos} = require(config.LOGIC + "/helpers/pos_db.js");
+const { getPos } = require(config.LOGIC + "/helpers/pos_db.js");
 const client = require(config.LOGIC + "/client/client.js");
 const { User } = require(config.LOGIC + "/helpers/DB.js");
 const { looper } = require(config.LOGIC + "/engine/looper.js");
@@ -43,7 +43,7 @@ io.on("connection", async (socket) => {
                 username: String(id),
                 nickname: "GUESS_#####".replace(/#/g, (n) => Math.floor(Math.random() * 9))
             });
-            if(!user) await cuser();
+            if (!user) await cuser();
             else {
                 await user.setData({
                     pos: config.GAME.start_pos,
@@ -53,9 +53,9 @@ io.on("connection", async (socket) => {
         }
         await cuser();
     }
-    
-    if(user.acclevel == 0){
-        socket.emit("error" , "ACCOUNT_BANNED");
+
+    if (user.acclevel == 0) {
+        socket.emit("error", "ACCOUNT_BANNED");
         socket.disconnect();
         return;
     }
@@ -81,17 +81,19 @@ io.on("connection", async (socket) => {
             }
         });
         const pos = getPos(_user.id);
-        
-        socket.broadcast.to(pos.map).emit("del-pj" , _user.id);
-        await _user.setData({
-            isOnline: false,
-            pos: {
-                x: pos.x,
-                y: pos.y,
-                a: pos.a
-            },
-            map: pos.map
-        });
+        console.log(pos);
+        if (pos) {
+            socket.broadcast.to(pos.map).emit("del-pj", _user.id);
+            await _user.setData({
+                isOnline: false,
+                pos: {
+                    x: pos.x,
+                    y: pos.y,
+                    a: pos.a
+                },
+                map: pos.map
+            });
+        }
         delete io.sockets[id];
     });
 });
